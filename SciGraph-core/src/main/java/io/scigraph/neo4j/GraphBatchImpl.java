@@ -61,7 +61,7 @@ public class GraphBatchImpl implements Graph {
 
   private final BatchInserter inserter;
   private final BatchInserterIndexProvider indexProvider;
-  private final BatchInserterIndex nodeIndex;
+  //private final BatchInserterIndex nodeIndex;
 
   private final String uniqueProperty;
 
@@ -84,7 +84,7 @@ public class GraphBatchImpl implements Graph {
     this.idMap = idMap;
     this.relationshipMap = relationshioMap;
     indexProvider = new LuceneBatchInserterIndexProvider(inserter);
-    nodeIndex = indexProvider.nodeIndex("node_auto_index", INDEX_CONFIG);
+    //nodeIndex = indexProvider.nodeIndex("node_auto_index", INDEX_CONFIG);
     this.uniqueProperty = uniqueProperty;
     this.indexedProperties = newHashSet(indexedProperties);
     this.indexedProperties.add(uniqueProperty);
@@ -314,9 +314,9 @@ public class GraphBatchImpl implements Graph {
     for (long id: ids) {
       Map<String, Object> properties = inserter.getNodeProperties(id);
       Map<String, Object> indexProperties = collectIndexProperties(properties);
-      if (!indexProperties.isEmpty()) {
-        nodeIndex.add(id, indexProperties);
-      }
+//      if (!indexProperties.isEmpty()) {
+//        nodeIndex.add(id, indexProperties);
+//      }
     }
     logger.info("Finished indexing");
   }
@@ -324,7 +324,7 @@ public class GraphBatchImpl implements Graph {
   @Override
   public void shutdown() {
     index();
-    nodeIndex.flush();
+    //nodeIndex.flush();
     indexProvider.shutdown();
     inserter.shutdown();
   }
