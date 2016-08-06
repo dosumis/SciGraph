@@ -30,7 +30,7 @@ import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.Tokenizer;
 import org.apache.lucene.analysis.core.KeywordAnalyzer;
 import org.apache.lucene.analysis.core.LowerCaseFilter;
-import org.apache.lucene.analysis.core.Lucene43StopFilter;
+import org.apache.lucene.analysis.core.StopFilter;
 import org.apache.lucene.analysis.core.WhitespaceTokenizer;
 import org.apache.lucene.analysis.miscellaneous.ASCIIFoldingFilter;
 import org.apache.lucene.analysis.miscellaneous.PerFieldAnalyzerWrapper;
@@ -85,7 +85,7 @@ public final class VocabularyIndexAnalyzer extends Analyzer {
       result = new BolEolFilter(result);
       result = new SynonymFilter(result, map, true);
       // result = new StopFilter(result, LuceneUtils.caseSensitiveStopSet);
-      result = new Lucene43StopFilter(false, result, LuceneUtils.caseSensitiveStopSet);
+      result = new StopFilter(result, LuceneUtils.caseSensitiveStopSet);
       result = new LowerCaseFilter(result);
       result = new ASCIIFoldingFilter(result);
 
