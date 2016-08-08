@@ -314,9 +314,9 @@ public class GraphBatchImpl implements Graph {
     for (long id: ids) {
       Map<String, Object> properties = inserter.getNodeProperties(id);
       Map<String, Object> indexProperties = collectIndexProperties(properties);
-//      if (!indexProperties.isEmpty()) {
-//        nodeIndex.add(id, indexProperties);
-//      }
+      if (!indexProperties.isEmpty()) {
+        nodeIndex.add(id, indexProperties);
+      }
     }
     logger.info("Finished indexing");
   }
@@ -324,7 +324,7 @@ public class GraphBatchImpl implements Graph {
   @Override
   public void shutdown() {
     index();
-    //nodeIndex.flush();
+    nodeIndex.flush();
     indexProvider.shutdown();
     inserter.shutdown();
   }

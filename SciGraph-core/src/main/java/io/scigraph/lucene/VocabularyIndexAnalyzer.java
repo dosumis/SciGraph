@@ -84,7 +84,7 @@ public final class VocabularyIndexAnalyzer extends Analyzer {
       result = new PatternReplaceFilter(result, Pattern.compile("'s"), "s", true);
       result = new BolEolFilter(result);
       result = new SynonymFilter(result, map, true);
-      // result = new StopFilter(result, LuceneUtils.caseSensitiveStopSet);
+      //result = new Lucene43StopFilter(false, result, LuceneUtils.caseSensitiveStopSet);
       result = new StopFilter(result, LuceneUtils.caseSensitiveStopSet);
       result = new LowerCaseFilter(result);
       result = new ASCIIFoldingFilter(result);
