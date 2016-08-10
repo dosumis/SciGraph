@@ -60,8 +60,8 @@ public final class VocabularyQueryAnalyzer extends Analyzer {
               Pattern.compile("^([\\.!\\?,:;\"'\\(\\)]*)(.*?)([\\.!\\?,:;\"'\\(\\)]*)$"), "$2",
               true);
       result = new PatternReplaceFilter(result, Pattern.compile("'s"), "s", true);
-      // result = new StopFilter(result, LuceneUtils.caseSensitiveStopSet);
-      result = new Lucene43StopFilter(false, result, LuceneUtils.caseSensitiveStopSet);
+      result = new StopFilter(result, LuceneUtils.caseSensitiveStopSet);
+      //result = new Lucene43StopFilter(false, result, LuceneUtils.caseSensitiveStopSet);
       result = new LowerCaseFilter(result);
       result = new ASCIIFoldingFilter(result);
 
